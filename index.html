@@ -1,146 +1,795 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mau Gak Jadi Pacarku? ❤️</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            overflow: hidden;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 400px;
-            width: 100%;
-            backdrop-filter: blur(5px);
-        }
-
-        .gif-container img {
-            width: 150px;
-            height: auto;
-            border-radius: 15px;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            color: #d81b60;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        p {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 15px;
-        }
-
-        .btn-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            position: relative;
-        }
-
-        button {
-            padding: 12px 30px;
-            font-size: 16px;
-            font-weight: bold;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        #btn-yes {
-            background-color: #ff4081;
-            color: white;
-            box-shadow: 0 4px 10px rgba(255, 64, 129, 0.3);
-        }
-
-        #btn-yes:hover {
-            background-color: #e91e63;
-            transform: scale(1.05);
-        }
-
-        #btn-no {
-            background-color: #e0e0e0;
-            color: #555;
-            position: relative;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#176b56">
+<title>PANIC 101 — Digital First Aid</title>
+<style>
+:root {
+  --green:#176b56;
+  --dark:#204b3e;
+  --light:#f5f8f7;
+  --muted:#788c85;
+  --border:#e7eeeb;
+  --white:#fff;
+  --red:#c43d46;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--light);
+  color:#243b34;
+  font-family:Inter,Arial,sans-serif;
+}
+button,input{font:inherit}
+button{cursor:pointer}
+header{
+  background:white;
+  padding:20px;
+  border-bottom:1px solid var(--border);
+}
+.header-inner,.container{
+  max-width:900px;
+  margin:auto;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.logo{
+  background:var(--green);
+  color:white;
+  padding:12px;
+  border-radius:12px;
+  font-weight:900;
+}
+.brand h3{
+  margin:0;
+  color:var(--green);
+  letter-spacing:3px;
+}
+.brand small{color:var(--muted)}
+nav{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  margin-top:20px;
+}
+nav button{
+  border:0;
+  padding:11px 15px;
+  border-radius:12px;
+  background:transparent;
+  color:#60736e;
+  font-weight:bold;
+  white-space:nowrap;
+}
+nav button.active{
+  background:#dcefe8;
+  color:var(--green);
+}
+.container{padding:25px 18px}
+.page{display:none}
+.page.active{display:block}
+h1{
+  color:var(--dark);
+  font-size:32px;
+  line-height:1.2;
+}
+h2{color:var(--dark)}
+p{line-height:1.6}
+.muted{color:var(--muted)}
+.card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:19px;
+  padding:20px;
+  margin-bottom:16px;
+}
+.tag{
+  display:inline-block;
+  background:#e9f3ee;
+  color:var(--green);
+  border-radius:30px;
+  padding:6px 11px;
+  font-size:11px;
+  font-weight:bold;
+}
+.sos{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  width:145px;
+  height:145px;
+  border-radius:50%;
+  margin:20px auto;
+  border:8px solid #f9e5e3;
+  background:linear-gradient(145deg,#d94d50,#a92d39);
+  color:white;
+  font-size:32px;
+  font-weight:900;
+  box-shadow:0 12px 32px #c94b4b38;
+}
+.primary{
+  background:var(--green);
+  color:white;
+  border:0;
+  border-radius:12px;
+  padding:13px 17px;
+  font-weight:bold;
+}
+.secondary{
+  background:#e7f2ed;
+  color:var(--green);
+  border:0;
+  border-radius:12px;
+  padding:12px 15px;
+  font-weight:bold;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.shortcut{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:17px;
+  text-align:left;
+}
+.field{
+  width:100%;
+  padding:13px;
+  border:1px solid #dce7e2;
+  border-radius:10px;
+  margin:7px 0 15px;
+  background:#fbfdfc;
+}
+.step{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  width:100%;
+  text-align:left;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px;
+  margin-bottom:10px;
+}
+.step.done{background:#eaf5ef;border-color:#a6d7c1}
+.number{
+  display:grid;
+  place-items:center;
+  width:40px;
+  height:40px;
+  flex-shrink:0;
+  background:#e7f2ed;
+  color:var(--green);
+  border-radius:12px;
+  font-size:20px;
+  font-weight:bold;
+}
+.step.done .number{background:var(--green);color:white}
+.progress{
+  background:#e7eeeb;
+  height:7px;
+  border-radius:20px;
+  overflow:hidden;
+}
+.progress span{
+  display:block;
+  height:100%;
+  width:0;
+  background:#399b7b;
+  transition:.3s;
+}
+.timer{
+  font-size:40px;
+  font-weight:900;
+  color:var(--green);
+  text-align:center;
+  margin:20px;
+  font-variant-numeric:tabular-nums;
+}
+.notice{
+  background:#fff6e8;
+  border:1px solid #f3e3c2;
+  color:#805d22;
+  padding:14px;
+  border-radius:12px;
+  font-size:12px;
+  line-height:1.6;
+}
+.service{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:16px 0;
+  border-bottom:1px solid var(--border);
+}
+.service:last-child{border:0}
+a{color:var(--green)}
+.smallbtn{
+  border:1px solid #dce8e2;
+  background:white;
+  padding:10px;
+  border-radius:10px;
+  color:var(--green);
+  text-decoration:none;
+  font-weight:bold;
+  font-size:12px;
+}
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:10;
+  background:#143c31;
+  color:white;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+  overflow-y:auto;
+}
+.modal.show{display:flex}
+.modal-content{
+  max-width:450px;
+  width:100%;
+  text-align:center;
+}
+.modal-box{
+  background:#ffffff18;
+  padding:22px;
+  border-radius:18px;
+  margin-top:25px;
+}
+.hide{display:none!important}
+footer{
+  text-align:center;
+  color:#82928c;
+  font-size:11px;
+  padding:25px 10px;
+  line-height:1.6;
+}
+@media(max-width:500px){
+  h1{font-size:28px}
+  .container{padding:20px 14px}
+  .grid{gap:9px}
+}
+</style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="gif-container">
-            <!-- Kamu bisa ganti link GIF di bawah ini -->
-            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIyb2xidmVlNHNmdHN6OHc3cjhia2pzaHRlMmsxd25xbDF3cWp1ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute Cat">
-        </div>
-        <h1>Mau gak jadi pacarku? 🥺❤️</h1>
-        <p>Jawab yang jujur ya, jangan bohong!</p>
-        
-        <div class="btn-container">
-            <button id="btn-yes" onclick="kirimWA()">Mau 🥰</button>
-            <button id="btn-no" onmouseover="kabur()" onclick="kabur()">Gak 😝</button>
-        </div>
-    </div>
+<header>
+ <div class="header-inner">
+  <div class="brand">
+   <div class="logo">P.</div>
+   <div>
+    <h3>PANIC 101</h3>
+    <small>DIGITAL FIRST AID</small>
+   </div>
+  </div>
+  <nav>
+   <button class="active" data-page="home">⌂ Beranda</button>
+   <button data-page="ground">◉ Grounding</button>
+   <button data-page="safe">♡ Safe-Lock</button>
+   <button data-page="help">✚ Bantuan</button>
+   <button data-page="settings">⚙ Pengaturan</button>
+  </nav>
+ </div>
+</header>
 
-    <script>
-        // ==========================================
-        // PENGATURAN NOMOR WA DAN PESAN
-        // ==========================================
-        // Ganti nomor di bawah ini! Format: 628xxxxxxxx (jangan pakai 08 atau +)
-        const NOMOR_WA = "6281234567890"; 
-        
-        // Pesan otomatis yang akan terkirim
-        const PESAN = "Iya, aku mau jadi pacar kamu! ❤️🥰"; 
+<main class="container">
 
-        function kirimWA() {
-            // Encode pesan agar format spasi dan emoji terbaca di URL
-            const url = `https://wa.me/${NOMOR_WA}?text=${encodeURIComponent(PESAN)}`;
-            window.location.href = url;
-        }
+<!-- BERANDA -->
+<section class="page active" id="home">
+ <span class="tag">YOUR PERSONAL CALM SPACE</span>
+ <h1>Tidak apa-apa.<br>Pelan-pelan, ya.</h1>
+ <p class="muted">
+ Kamu tidak harus menghadapi semuanya sekaligus.
+ Mari kembali ke momen ini, satu langkah kecil.
+ </p>
 
-        // Fungsi agar tombol "Gak" kabur saat disentuh / didekati mouse
-        function kabur() {
-            const btnNo = document.getElementById('btn-no');
-            
-            // Dapatkan ukuran layar browser
-            const maxX = window.innerWidth - btnNo.offsetWidth;
-            const maxY = window.innerHeight - btnNo.offsetHeight;
+ <div class="card" style="text-align:center">
+  <p><b>Butuh bantuan sekarang?</b></p>
+  <button class="sos" id="sosButton">
+   SOS
+   <small style="font-size:10px">TAP TO START</small>
+  </button>
+  <b style="color:var(--dark)">Tekan untuk memulai pendampingan</b>
+  <p class="muted" style="font-size:12px">
+   Panduan singkat • Tanpa penilaian
+  </p>
+ </div>
 
-            // Buat posisi acak baru
-            const randomX = Math.floor(Math.random() * (maxX - 20)) + 10;
-            const randomY = Math.floor(Math.random() * (maxY - 20)) + 10;
+ <div class="grid">
+  <button class="shortcut" onclick="showPage('ground')">
+   <div style="font-size:25px">🌿</div>
+   <b>Grounding 5-4-3-2-1</b>
+   <p class="muted">Kembali fokus pada sekitar.</p>
+  </button>
+  <button class="shortcut" onclick="showPage('safe')">
+   <div style="font-size:25px">🛡️</div>
+   <b>Panic Safe-Lock</b>
+   <p class="muted">Siapkan bantuan darurat.</p>
+  </button>
+ </div>
 
-            btnNo.style.position = 'fixed';
-            btnNo.style.left = randomX + 'px';
-            btnNo.style.top = randomY + 'px';
-        }
+ <div class="card">
+  <b>Pengingat lembut ☁️</b>
+  <p class="muted">
+   "Perasaan ini nyata, tetapi tidak harus mengendalikan
+   seluruh dirimu. Kamu sedang berusaha, dan itu sudah berarti."
+  </p>
+ </div>
 
-        // Tambahan agar di HP (layar sentuh) tombolnya kabur saat disentuh
-        document.getElementById('btn-no').addEventListener('touchstart', function(e) {
-            e.preventDefault(); // Mencegah klik tertekan di HP
-            kabur();
-        });
-    </script>
+ <div class="notice">
+  Jika mengalami nyeri dada berat, sesak napas berat, pingsan,
+  atau gejala baru yang mengkhawatirkan, segera cari pertolongan medis.
+ </div>
+</section>
+
+<!-- GROUNDING -->
+<section class="page" id="ground">
+ <span class="tag">SENSORY RESET</span>
+ <h2>Grounding 5-4-3-2-1</h2>
+ <p class="muted">
+ Gunakan indra untuk membantu dirimu kembali terhubung
+ dengan keadaan saat ini.
+ </p>
+
+ <div class="card">
+  <b>PROGRES LATIHAN</b>
+  <p id="groundCount">0 / 5</p>
+  <div class="progress"><span id="groundProgress"></span></div>
+  <br>
+  <button class="secondary" onclick="startVoice()">
+   🔊 Dengarkan panduan
+  </button>
+  <button class="secondary" onclick="stopVoice()">■ Stop</button>
+ </div>
+
+ <div id="steps">
+  <button class="step" data-step="0">
+   <span class="number">5</span>
+   <span><b>Lihat 5 benda</b><br>
+   <small>Amati lima benda di sekitarmu.</small></span>
+  </button>
+  <button class="step" data-step="1">
+   <span class="number">4</span>
+   <span><b>Sentuh 4 benda</b><br>
+   <small>Rasakan empat tekstur berbeda.</small></span>
+  </button>
+  <button class="step" data-step="2">
+   <span class="number">3</span>
+   <span><b>Dengarkan 3 suara</b><br>
+   <small>Kenali suara di sekitarmu.</small></span>
+  </button>
+  <button class="step" data-step="3">
+   <span class="number">2</span>
+   <span><b>Kenali 2 aroma</b><br>
+   <small>Sadari aroma di sekitarmu.</small></span>
+  </button>
+  <button class="step" data-step="4">
+   <span class="number">1</span>
+   <span><b>Sadari 1 rasa</b><br>
+   <small>Sadari satu rasa di mulutmu.</small></span>
+  </button>
+ </div>
+
+ <div class="card hide" id="groundDone">
+  <h3>🌱 Kamu berhasil menyelesaikannya.</h3>
+  <p class="muted">Terima kasih sudah memberi dirimu waktu.</p>
+  <button class="secondary" onclick="resetGround()">Ulangi latihan</button>
+ </div>
+</section>
+
+<!-- SAFE LOCK -->
+<section class="page" id="safe">
+ <span class="tag">EMERGENCY SUPPORT</span>
+ <h2>Panic Safe-Lock</h2>
+ <p class="muted">
+ Siapkan orang tepercaya yang bisa dihubungi ketika
+ kamu masih membutuhkan bantuan setelah 10 menit.
+ </p>
+
+ <div class="card">
+  <h3>Kontak darurat</h3>
+  <label>Nama kontak</label>
+  <input class="field" id="contactName" placeholder="Contoh: Ibu / Sahabat">
+  <label>Nomor telepon</label>
+  <input class="field" id="contactPhone" type="tel" placeholder="+62 8xx xxxx xxxx">
+  <button class="primary" onclick="saveContact()" style="width:100%">
+   Simpan kontak
+  </button>
+  <p id="savedMessage" class="hide" style="color:green">
+   ✓ Kontak berhasil disimpan.
+  </p>
+ </div>
+
+ <div class="card">
+  <h3>📍 Lokasi saat ini</h3>
+  <p class="muted">Ambil lokasi dengan izin browser.</p>
+  <button class="secondary" onclick="getLocation()">
+   Ambil lokasi saya
+  </button>
+  <p id="locationStatus" class="muted"></p>
+ </div>
+
+ <div class="card" style="text-align:center">
+  <b>HITUNG MUNDUR PENDAMPINGAN</b>
+  <div class="timer" id="timer">10:00</div>
+  <div class="progress"><span id="timerProgress"></span></div>
+  <p id="timerStatus" class="muted">Timer belum dimulai.</p>
+  <button class="primary" id="startTimer" onclick="startTimer()">
+   Mulai 10 menit
+  </button>
+  <button class="secondary" onclick="resetTimer()">Reset</button>
+ </div>
+
+ <div class="card hide" id="alertReady">
+  <h3>Waktunya mengecek kondisimu.</h3>
+  <p class="muted">
+   Jika masih membutuhkan bantuan, hubungi kontak darurat.
+  </p>
+  <button class="primary" onclick="sendAlert()">
+   Buat pesan bantuan
+  </button>
+ </div>
+
+ <div class="notice">
+  Prototipe ini belum mengirim notifikasi otomatis atau SMS otomatis.
+  Pesan bantuan harus ditinjau dan dikirim sendiri oleh pengguna.
+ </div>
+</section>
+
+<!-- BANTUAN -->
+<section class="page" id="help">
+ <span class="tag">YOU DESERVE SUPPORT</span>
+ <h2>Kamu tidak sendirian.</h2>
+ <p class="muted">
+ Hubungi layanan berikut untuk dukungan lebih lanjut.
+ </p>
+
+ <div class="card">
+  <div class="service">
+   <div>
+    <b>Healing119.id</b>
+    <p class="muted">Dukungan psikologis awal Kemenkes</p>
+    <b>119 ekstensi 8</b>
+   </div>
+   <a class="smallbtn" href="https://www.healing119.id/" target="_blank">Kunjungi ↗</a>
+  </div>
+
+  <div class="service">
+   <div>
+    <b>Darurat medis 119</b>
+    <p class="muted">Kegawatdaruratan medis</p>
+   </div>
+   <a class="primary" href="tel:119">Telepon</a>
+  </div>
+
+  <div class="service">
+   <div>
+    <b>Riliv</b>
+    <p class="muted">Konseling dan wellbeing</p>
+   </div>
+   <a class="smallbtn" href="https://riliv.co/" target="_blank">Kunjungi ↗</a>
+  </div>
+
+  <div class="service">
+   <div>
+    <b>Bicarakan.id</b>
+    <p class="muted">Konseling psikolog</p>
+   </div>
+   <a class="smallbtn" href="https://www.bicarakan.id/" target="_blank">Kunjungi ↗</a>
+  </div>
+ </div>
+
+ <div class="notice">
+  119 ekstensi 8 merupakan dukungan psikologis awal, bukan pengganti
+  layanan gawat darurat medis. Untuk keadaan yang mengancam nyawa,
+  hubungi 119 atau datangi IGD terdekat.
+ </div>
+</section>
+
+<!-- PENGATURAN -->
+<section class="page" id="settings">
+ <span class="tag">PERSONAL PREFERENCES</span>
+ <h2>Pengaturan</h2>
+
+ <div class="card">
+  <h3>🔊 Suara panduan</h3>
+  <p class="muted">Coba suara pendampingan.</p>
+  <button class="secondary" onclick="speak('Halo. Selamat datang di PANIC 101. Kamu tidak perlu terburu-buru.')">
+   Coba suara
+  </button>
+ </div>
+
+ <div class="card">
+  <h3>Data perangkat</h3>
+  <p class="muted">
+   Kontak disimpan secara lokal pada browser ini.
+  </p>
+  <button class="secondary" onclick="clearData()">
+   Hapus kontak tersimpan
+  </button>
+ </div>
+
+ <div class="card">
+  <h3>Tentang PANIC 101</h3>
+  <p class="muted">
+   Digital first-aid platform untuk membantu pengguna
+   menghadapi momen panik melalui grounding dan akses bantuan.
+  </p>
+  <b style="color:var(--green)">Versi 1.0</b>
+ </div>
+</section>
+
+<footer>
+ PANIC 101 · DIGITAL FIRST AID<br>
+ Kamu layak mendapatkan bantuan.<br>
+ Aplikasi ini bukan pengganti pertolongan profesional.
+</footer>
+</main>
+
+<!-- SOS MODAL -->
+<div class="modal" id="panicModal">
+ <div class="modal-content">
+  <div style="font-size:50px">🌿</div>
+  <span style="color:#b8e4d0">PANIC SUPPORT MODE</span>
+  <h1 style="color:white">Kamu aman untuk mengambil jeda.</h1>
+  <p style="color:#d3eee2">
+   Tidak perlu menyelesaikan semuanya sekarang.
+   Fokus pada satu hal kecil.
+  </p>
+
+  <div class="modal-box">
+   <small>COBA SEKARANG</small>
+   <h2 style="color:white" id="panicPrompt">
+    Letakkan kedua kaki dengan nyaman di lantai.
+   </h2>
+   <button class="secondary" onclick="previousPrompt()">Sebelumnya</button>
+   <button class="primary" onclick="nextPrompt()">Berikutnya →</button>
+  </div>
+
+  <button class="primary" style="width:100%;margin-top:20px"
+   onclick="closeModal();showPage('ground')">
+   Mulai grounding 5-4-3-2-1
+  </button>
+
+  <button onclick="closeModal()" style="margin-top:20px;background:none;border:0;color:white">
+   Kembali ke beranda
+  </button>
+ </div>
+</div>
+
+<script>
+// NAVIGASI
+function showPage(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav button').forEach(b=>{
+  b.classList.toggle('active',b.dataset.page===id);
+ });
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('nav button').forEach(btn=>{
+ btn.addEventListener('click',()=>showPage(btn.dataset.page));
+});
+
+// SOS PANIC MODE
+const prompts=[
+ 'Letakkan kedua kaki dengan nyaman di lantai.',
+ 'Rasakan permukaan yang menopang tubuhmu.',
+ 'Lihat satu benda di dekatmu. Perhatikan warnanya.',
+ 'Bernapaslah senyaman mungkin. Tidak perlu dipaksakan.',
+ 'Katakan dalam hati: aku sedang berada di sini, saat ini.'
+];
+let promptIndex=0;
+
+document.getElementById('sosButton').onclick=()=>{
+ promptIndex=0;
+ updatePrompt();
+ document.getElementById('panicModal').classList.add('show');
+ speak(prompts[0]);
+};
+function updatePrompt(){
+ document.getElementById('panicPrompt').textContent=prompts[promptIndex];
+}
+function nextPrompt(){
+ promptIndex=(promptIndex+1)%prompts.length;
+ updatePrompt();
+ speak(prompts[promptIndex]);
+}
+function previousPrompt(){
+ promptIndex=(promptIndex+prompts.length-1)%prompts.length;
+ updatePrompt();
+ speak(prompts[promptIndex]);
+}
+function closeModal(){
+ document.getElementById('panicModal').classList.remove('show');
+ stopVoice();
+}
+
+// TEXT TO SPEECH
+function speak(text){
+ if(!('speechSynthesis' in window)){
+  alert('Browser tidak mendukung panduan suara.');
+  return;
+ }
+ speechSynthesis.cancel();
+ const utterance=new SpeechSynthesisUtterance(text);
+ utterance.lang='id-ID';
+ utterance.rate=.83;
+ speechSynthesis.speak(utterance);
+}
+function stopVoice(){
+ if('speechSynthesis' in window)speechSynthesis.cancel();
+}
+const groundingTexts=[
+ 'Mari lihat lima benda di sekitarmu. Perhatikan warna dan bentuknya.',
+ 'Sekarang sentuh empat benda. Rasakan teksturnya.',
+ 'Dengarkan tiga suara di sekitarmu.',
+ 'Sadari dua aroma di sekitarmu.',
+ 'Sadari satu rasa di mulutmu. Kamu telah melakukan hal baik.'
+];
+function startVoice(){
+ speak(groundingTexts.filter((x,i)=>!completed.has(i)).join(' '));
+}
+
+// GROUNDING
+let completed=new Set();
+document.querySelectorAll('[data-step]').forEach(button=>{
+ button.onclick=()=>{
+  const n=Number(button.dataset.step);
+  if(completed.has(n))completed.delete(n);
+  else completed.add(n);
+  button.classList.toggle('done',completed.has(n));
+  button.querySelector('.number').textContent=completed.has(n)?'✓':[5,4,3,2,1][n];
+  updateGround();
+ };
+});
+function updateGround(){
+ document.getElementById('groundCount').textContent=completed.size+' / 5';
+ document.getElementById('groundProgress').style.width=(completed.size*20)+'%';
+ document.getElementById('groundDone').classList.toggle('hide',completed.size!==5);
+}
+function resetGround(){
+ completed.clear();
+ document.querySelectorAll('[data-step]').forEach((b,i)=>{
+  b.classList.remove('done');
+  b.querySelector('.number').textContent=[5,4,3,2,1][i];
+ });
+ updateGround();
+}
+
+// KONTAK DARURAT
+const STORAGE_KEY='panic101_contact';
+
+function saveContact(){
+ const name=document.getElementById('contactName').value.trim();
+ const phone=document.getElementById('contactPhone').value.trim();
+ if(!name||!phone){
+  alert('Silakan isi nama dan nomor telepon.');
+  return;
+ }
+ localStorage.setItem(STORAGE_KEY,JSON.stringify({name,phone}));
+ document.getElementById('savedMessage').classList.remove('hide');
+}
+function loadContact(){
+ try{
+  const contact=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null');
+  if(contact){
+   document.getElementById('contactName').value=contact.name;
+   document.getElementById('contactPhone').value=contact.phone;
+   document.getElementById('savedMessage').classList.remove('hide');
+  }
+ }catch(e){}
+}
+function clearData(){
+ localStorage.removeItem(STORAGE_KEY);
+ document.getElementById('contactName').value='';
+ document.getElementById('contactPhone').value='';
+ document.getElementById('savedMessage').classList.add('hide');
+ alert('Kontak berhasil dihapus dari browser.');
+}
+loadContact();
+
+// LOKASI
+let locationText='';
+function getLocation(){
+ const status=document.getElementById('locationStatus');
+ if(!navigator.geolocation){
+  status.textContent='Browser tidak mendukung lokasi.';
+  return;
+ }
+ status.textContent='Meminta izin lokasi...';
+ navigator.geolocation.getCurrentPosition(
+  position=>{
+   const lat=position.coords.latitude;
+   const lon=position.coords.longitude;
+   locationText='https://maps.google.com/?q='+lat+','+lon;
+   status.innerHTML='Lokasi berhasil diperoleh. <a target="_blank" rel="noopener" href="'+locationText+'">Lihat peta ↗</a>';
+  },
+  ()=>{
+   status.textContent='Gagal mendapatkan lokasi. Periksa izin browser.';
+  },
+  {enableHighAccuracy:true,timeout:12000,maximumAge:60000}
+ );
+}
+
+// SAFE-LOCK TIMER
+let remaining=600;
+let interval=null;
+
+function renderTimer(){
+ const min=Math.floor(remaining/60).toString().padStart(2,'0');
+ const sec=(remaining%60).toString().padStart(2,'0');
+ document.getElementById('timer').textContent=min+':'+sec;
+ document.getElementById('timerProgress').style.width=
+  ((600-remaining)/600*100)+'%';
+}
+function startTimer(){
+ if(interval)return;
+ if(remaining<=0)remaining=600;
+
+ document.getElementById('startTimer').disabled=true;
+ document.getElementById('timerStatus').textContent='Timer sedang berjalan.';
+ document.getElementById('alertReady').classList.add('hide');
+
+ interval=setInterval(()=>{
+  remaining--;
+  renderTimer();
+  if(remaining<=0){
+   clearInterval(interval);
+   interval=null;
+   document.getElementById('startTimer').disabled=false;
+   document.getElementById('timerStatus').textContent=
+    'Sepuluh menit berlalu. Periksa kondisimu.';
+   document.getElementById('alertReady').classList.remove('hide');
+  }
+ },1000);
+}
+function resetTimer(){
+ clearInterval(interval);
+ interval=null;
+ remaining=600;
+ renderTimer();
+ document.getElementById('startTimer').disabled=false;
+ document.getElementById('timerStatus').textContent='Timer belum dimulai.';
+ document.getElementById('alertReady').classList.add('hide');
+}
+
+// PESAN BANTUAN
+function sendAlert(){
+ let contact;
+ try{
+  contact=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null');
+ }catch(e){}
+
+ if(!contact){
+  alert('Simpan kontak darurat terlebih dahulu.');
+  return;
+ }
+
+ const message=
+  'Halo '+contact.name+
+  ', aku sedang membutuhkan bantuan dan ingin ditemani. Bisa hubungi atau temui aku? '+
+  (locationText?'Lokasiku: '+locationText:'Lokasi belum tersedia.');
+
+ const sms='sms:'+encodeURIComponent(contact.phone)+
+  '?body='+encodeURIComponent(message);
+
+ window.location.href=sms;
+}
+</script>
 </body>
 </html>
